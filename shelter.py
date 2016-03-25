@@ -115,6 +115,7 @@ test = test.drop(['AgeuponOutcome'],axis=1)
 def uniquebreed(breeds):
 	res = {}
 	for color in breeds:
+		color = color.replace(' ','/')
 		spl = color.split('/')
 		if len(spl)>1:
 			for c in spl:
@@ -129,7 +130,7 @@ def uniquebreed(breeds):
 			else:	
 				res[color] += 1	
 	return res
-#print uniquebreed(train['Breed'])
+print uniquebreed(train['Breed'])
 def coderbreed(data):
 	c  = 1
 	res = {}
@@ -144,7 +145,7 @@ def breed(Breed):
 	r = 0
 	for i in xrange(len(key_code)):
 		if key_code[i] in Breed:
-			r+= (0.5)**i
+			r+= (1.1)**i
 	return r
 #print set(train['Breed'].apply(breed))
 train['breed'] = train['Breed'].apply(breed)
